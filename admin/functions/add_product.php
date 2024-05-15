@@ -1,91 +1,197 @@
 <?php
 include '../../database/config.php';
- // include '../../database/sessions/admin_session.php';
- $sql = "SELECT username FROM admin WHERE id = 1";
- $admin = $conn->query($sql);
- $row = $admin->fetch_assoc();
-///inserting
-$fossil_query = "SELECT * FROM sub_category WHERE category_id=1";
-$mineral_query = "SELECT * FROM sub_category WHERE category_id=2";
-$meteorite_query = "SELECT * FROM sub_category WHERE category_id=3";
-$jewelry_query = "SELECT * FROM sub_category WHERE category_id=4";
 
-$fossil_sql = mysqli_query($conn,$fossil_query);
-$mineral_sql = mysqli_query($conn,$mineral_query);
-$meteorite_sql = mysqli_query($conn,$meteorite_query);
-$jewelry_sql = mysqli_query($conn,$jewelry_query);
+$sql = "SELECT username FROM admin WHERE id = 1";
+$admin = $conn->query($sql);
+$row = $admin->fetch_assoc();
 
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form values
+$categoryQueries = [
+    1 => "SELECT * FROM sub_category WHERE category_id = 1", // Fossil
+    2 => "SELECT * FROM sub_category WHERE category_id = 2", // Mineral
+    3 => "SELECT * FROM sub_category WHERE category_id = 3", // Meteorite
+    4 => "SELECT * FROM sub_category WHERE category_id = 4", // Jewelry
+];
+
+
+$categoryResults = [];
+foreach ($categoryQueries as $categoryId => $query) {
+    $categoryResults[$categoryId] = mysqli_query($conn, $query);
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $category = $_POST["select"];
     $name = $_POST["name"];
     $price = $_POST["price"];
     $quantity = $_POST["quantity"];
-    if(isset($_FILES["img"]) && isset($_FILES["qr"])) {
-      $img = $_FILES["img"];
-      $qr = $_FILES["qr"];
-  
-      $target_dir = "../../uploads/product";
-  
-      // Move image file
-      $img_target_file = $target_dir . basename($img["name"][0]);
-      move_uploaded_file($img["tmp_name"][0], $img_target_file);
-  
-      // Move QR code file
-      $qr_target_file = $target_dir . basename($qr["name"]);
-      move_uploaded_file($qr["tmp_name"], $qr_target_file);
-  
-      echo "Files uploaded successfully.";
-  } else {
-      echo "Invalid file uploads.";
-  }
-  
-    // Depending on the category, you can retrieve additional fields
-    if ($category == "fossil") {
-        $fossilPeriod = $_POST["period"];
-        $rockType = NULL;
-        $mineralEnvironment = NULL;
-        $sub_category = $_POST['Sub_select_fossil'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,`fossile_period`,`price`,`quantity`,`image`,`qr_code`,`description`)
-        VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
-        // Process fossil data
-    } elseif ($category == "mineral") {
-        $mineralEnvironment = $_POST["mineralEnvironment"];
-        $fossilPeriod = NULL;
-        $rockType = NULL;
-        $sub_category = $_POST['Sub_select_mineral'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,mineral_envirement,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}', '{$_POST['env']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
-        // Process mineral data
-    } elseif ($category == "jewelry") {
-        $rockType = $_POST["type"];
-        $fossilPeriod = NULL;
-        $mineralEnvironment = NULL;
-        $sub_category = $_POST['Sub_select_jewelry'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,rock_type,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}', '{$_POST['type']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
-        // Process jewelry data
-    }else if($category == "meteorite"){
-        $rockType = NULL;
-        $fossilPeriod = NULL;
-        $mineralEnvironment = NULL;
-        $sub_category = $_POST['Sub_select_meteorite'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";////////////////////////////////////////////////////////NOT DONE YET!!!!!!!!!!!!
+    $description = $_POST["description"];
+    $subcategory = $_POST["Sub_select_{$category}"];
+
+    $targetDir = "../../uploads/product";
+    $imgFile = $targetDir . basename($_FILES["img"]["name"][0]);
+    $qrFile = $targetDir . basename($_FILES["qr"]["name"]);
+
+    if (move_uploaded_file($_FILES["img"]["tmp_name"][0], $imgFile) && move_uploaded_file($_FILES["qr"]["tmp_name"], $qrFile)) {
+        echo "Files uploaded successfully.";
+    } else {
+        echo "Invalid file uploads.";
     }
-    // Execute SQL query
-    // $result = mysqli_query($conn, $sql);
-   
-    // Check if image file is a actual image or fake image
-    
-    
-    if(isset($_POST['add_prod'])){
-    $sql=mysqli_query($conn,$insert_query);
-    }else{
-      echo 'error';
+
+    $additionalFields = [];
+    switch ($category) {
+        case "fossil":
+            $additionalFields = [
+                "fossilPeriod" => $_POST["period"],
+                "rockType" => null,
+                "mineralEnvironment" => null,
+            ];
+            break;
+        case "mineral":
+            $additionalFields = [
+                "mineralEnvironment" => $_POST["mineralEnvironment"],
+                "fossilPeriod" => null,
+                "rockType" => null,
+            ];
+            break;
+        case "jewelry":
+            $additionalFields = [
+                "rockType" => $_POST["type"],
+                "fossilPeriod" => null,
+                "mineralEnvironment" => null,
+            ];
+            break;
+        case "meteorite":
+            $additionalFields = [
+                "rockType" => null,
+                "fossilPeriod" => null,
+                "mineralEnvironment" => null,
+            ];
+            break;
     }
+
+    // SQL query
+    $columns = array_merge(
+        ["sub_category_id", "name", "price", "quantity", "image", "qr_code", "description"],
+        array_keys($additionalFields)
+    );
+    $values = array_merge(
+        [$subcategory, $name, $price, $quantity, $imgFile, $qrFile, $description],
+        array_values($additionalFields)
+    );
+    $placeholders = rtrim(str_repeat("?,", count($values)), ",");
+    $insertQuery = "INSERT INTO product (" . implode(", ", $columns) . ") VALUES (" . $placeholders . ")";
+
+    
+    $stmt = $conn->prepare($insertQuery);
+    $stmt->bind_param(str_repeat("s", count($values)), ...$values);
+    $result = $stmt->execute();
+
+    if ($result) {
+        echo "Product added successfully.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
+
+$conn->close();
+
+
+
+
+
+
+
+
+
+
+// include '../../database/config.php';
+//  // include '../../database/sessions/admin_session.php';
+//  $sql = "SELECT username FROM admin WHERE id = 1";
+//  $admin = $conn->query($sql);
+//  $row = $admin->fetch_assoc();
+// ///inserting
+// $fossil_query = "SELECT * FROM sub_category WHERE category_id=1";
+// $mineral_query = "SELECT * FROM sub_category WHERE category_id=2";
+// $meteorite_query = "SELECT * FROM sub_category WHERE category_id=3";
+// $jewelry_query = "SELECT * FROM sub_category WHERE category_id=4";
+
+// $fossil_sql = mysqli_query($conn,$fossil_query);
+// $mineral_sql = mysqli_query($conn,$mineral_query);
+// $meteorite_sql = mysqli_query($conn,$meteorite_query);
+// $jewelry_sql = mysqli_query($conn,$jewelry_query);
+
+// // Check if form is submitted
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     // Retrieve form values
+//     $category = $_POST["select"];
+//     $name = $_POST["name"];
+//     $price = $_POST["price"];
+//     $quantity = $_POST["quantity"];
+//     if(isset($_FILES["img"]) && isset($_FILES["qr"])) {
+//       $img = $_FILES["img"];
+//       $qr = $_FILES["qr"];
+  
+//       $target_dir = "../../uploads/product";
+  
+//       // Move image file
+//       $img_target_file = $target_dir . basename($img["name"][0]);
+//       move_uploaded_file($img["tmp_name"][0], $img_target_file);
+  
+//       // Move QR code file
+//       $qr_target_file = $target_dir . basename($qr["name"]);
+//       move_uploaded_file($qr["tmp_name"], $qr_target_file);
+  
+//       echo "Files uploaded successfully.";
+//   } else {
+//       echo "Invalid file uploads.";
+//   }
+  
+//     // Depending on the category, you can retrieve additional fields
+//     if ($category == "fossil") {
+//         $fossilPeriod = $_POST["period"];
+//         $rockType = NULL;
+//         $mineralEnvironment = NULL;
+//         $sub_category = $_POST['Sub_select_fossil'];
+//         $insert_query = "INSERT INTO product (sub_category_id,`name`,`fossile_period`,`price`,`quantity`,`image`,`qr_code`,`description`)
+//         VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
+//         // Process fossil data
+//     } elseif ($category == "mineral") {
+//         $mineralEnvironment = $_POST["mineralEnvironment"];
+//         $fossilPeriod = NULL;
+//         $rockType = NULL;
+//         $sub_category = $_POST['Sub_select_mineral'];
+//         $insert_query = "INSERT INTO product (sub_category_id,`name`,mineral_envirement,price,quantity,`image`,qr_code,`description`)
+//         VALUES('$sub_category','{$_POST['name']}', '{$_POST['env']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
+//         // Process mineral data
+//     } elseif ($category == "jewelry") {
+//         $rockType = $_POST["type"];
+//         $fossilPeriod = NULL;
+//         $mineralEnvironment = NULL;
+//         $sub_category = $_POST['Sub_select_jewelry'];
+//         $insert_query = "INSERT INTO product (sub_category_id,`name`,rock_type,price,quantity,`image`,qr_code,`description`)
+//         VALUES('$sub_category','{$_POST['name']}', '{$_POST['type']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
+//         // Process jewelry data
+//     }else if($category == "meteorite"){
+//         $rockType = NULL;
+//         $fossilPeriod = NULL;
+//         $mineralEnvironment = NULL;
+//         $sub_category = $_POST['Sub_select_meteorite'];
+//         $insert_query = "INSERT INTO product (sub_category_id,`name`,price,quantity,`image`,qr_code,`description`)
+//         VALUES('$sub_category','{$_POST['name']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";////////////////////////////////////////////////////////NOT DONE YET!!!!!!!!!!!!
+//     }
+//     // Execute SQL query
+//     // $result = mysqli_query($conn, $sql);
+   
+//     // Check if image file is a actual image or fake image
+    
+    
+//     if(isset($_POST['add_prod'])){
+//     $sql=mysqli_query($conn,$insert_query);
+//     }else{
+//       echo 'error';
+//     }
+// }
 
 
 ?>
