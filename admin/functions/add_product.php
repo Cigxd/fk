@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // $result = mysqli_query($conn, $sql);
    
     // Check if image file is a actual image or fake image
-    
+    ///yes
     
     if(isset($_POST['add_prod'])){
     $sql=mysqli_query($conn,$insert_query);
