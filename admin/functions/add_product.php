@@ -22,24 +22,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
     $price = $_POST["price"];
     $quantity = $_POST["quantity"];
-    if(isset($_FILES["img"]) && isset($_FILES["qr"])) {
-      $img = $_FILES["img"];
-      $qr = $_FILES["qr"];
-  
-      $target_dir = "../../uploads/product";
-  
-      // Move image file
-      $img_target_file = $target_dir . basename($img["name"][0]);
-      move_uploaded_file($img["tmp_name"][0], $img_target_file);
-  
-      // Move QR code file
-      $qr_target_file = $target_dir . basename($qr["name"]);
-      move_uploaded_file($qr["tmp_name"], $qr_target_file);
-  
-      echo "Files uploaded successfully.";
-  } else {
-      echo "Invalid file uploads.";
-  }
+
+   //////////image
+        $image_title = $_FILES["img"]['name'];
+        $image_type = $_FILES["img"]['type'];
+        $image_tmp = $_FILES["img"]['tmp_name'];
+
+        $target = "../../uploads/products/";
+        
+        $image_dir = $target . $image_title;
+        move_uploaded_file($image_tmp,$image_dir);
+
+      
+
+  //////////qr code 
+  include "../../includes/phpqrcode/qrlib.php";
+    $query = "SELECT (product_id+1) AS max from product";
+    $sql = mysqli_query($conn,$query);
+    $new_id = mysqli_fetch_assoc($sql);
+
+    // how to save PNG codes to server
+    
+    $tempDir = "../../uploads/products/";
+    
+    $codeContents = "localhost/fk/client/view_products.php?id='{$new_id['max']}'";
+    
+    // we need to generate filename somehow, 
+    // with md5 or with database ID used to obtains $codeContents...
+    $fileName = '005_file_'.md5($codeContents).'.png';
+    
+    $pngAbsoluteFilePath = $tempDir.$fileName;
+    $urlRelativeFilePath = $tempDir.$fileName;
+    
+    // generating
+    if (!file_exists($pngAbsoluteFilePath)) {
+        QRcode::png($codeContents, $pngAbsoluteFilePath);
+    }
+
   
     // Depending on the category, you can retrieve additional fields
     if ($category == "fossil") {
@@ -48,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mineralEnvironment = NULL;
         $sub_category = $_POST['Sub_select_fossil'];
         $insert_query = "INSERT INTO product (sub_category_id,`name`,`fossile_period`,`price`,`quantity`,`image`,`qr_code`,`description`)
-        VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
+        VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";
         // Process fossil data
     } elseif ($category == "mineral") {
         $mineralEnvironment = $_POST["mineralEnvironment"];
@@ -56,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rockType = NULL;
         $sub_category = $_POST['Sub_select_mineral'];
         $insert_query = "INSERT INTO product (sub_category_id,`name`,mineral_envirement,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}', '{$_POST['env']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
+        VALUES('$sub_category','{$_POST['name']}', '{$_POST['env']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";
         // Process mineral data
     } elseif ($category == "jewelry") {
         $rockType = $_POST["type"];
@@ -64,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mineralEnvironment = NULL;
         $sub_category = $_POST['Sub_select_jewelry'];
         $insert_query = "INSERT INTO product (sub_category_id,`name`,rock_type,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}', '{$_POST['type']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";
+        VALUES('$sub_category','{$_POST['name']}', '{$_POST['type']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";
         // Process jewelry data
     }else if($category == "meteorite"){
         $rockType = NULL;
@@ -72,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mineralEnvironment = NULL;
         $sub_category = $_POST['Sub_select_meteorite'];
         $insert_query = "INSERT INTO product (sub_category_id,`name`,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}','{$_POST['price']}','{$_POST['quantity']}','{$img_target_file}','{$qr_target_file}','{$_POST['description']}')";////////////////////////////////////////////////////////NOT DONE YET!!!!!!!!!!!!
+        VALUES('$sub_category','{$_POST['name']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";////////////////////////////////////////////////////////NOT DONE YET!!!!!!!!!!!!
     }
     // Execute SQL query
     // $result = mysqli_query($conn, $sql);
@@ -472,23 +491,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                       <div class="form-group">
                         <label>Image upload</label>
-                        <input type="file" name="img[]" class="file-upload-default btn btn-primary">
+                        <input type="file" class="file-upload-default btn btn-primary">
                         <div class="input-group col-xs-12">
-                          <input type="FILE" class="form-control file-upload-info " placeholder="Upload Image" >
+                          <input type="FILE" class="form-control file-upload-info " placeholder="Upload Image" name="img" >
                           <span class="input-group-append">
                           </span>
                         </div>
                       </div>
 
-                      <div class="form-group">
-                        <label>QR code upload</label>
-                        <input type="file" name="qr" class="file-upload-default btn btn-primary">
-                        <div class="input-group col-xs-12">
-                          <input type="FILE" class="form-control file-upload-info " placeholder="Upload Image" >
-                          <span class="input-group-append">
-                          </span>
-                        </div>
-                      </div>
 
 
 
