@@ -1,5 +1,7 @@
 <?php
 include '../../database/config.php';
+include "../../includes/phpqrcode/qrlib.php";
+
  // include '../../database/sessions/admin_session.php';
  $sql = "SELECT username FROM admin WHERE id = 1";
  $admin = $conn->query($sql);
@@ -36,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 
   //////////qr code 
-  include "../../includes/phpqrcode/qrlib.php";
     $query = "SELECT (product_id+1) AS max from product";
     $sql = mysqli_query($conn,$query);
     $new_id = mysqli_fetch_assoc($sql);
@@ -340,7 +341,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-
 
           <div class="col-12 grid-margin stretch-card">
                 <div class="card">

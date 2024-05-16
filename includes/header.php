@@ -8,8 +8,6 @@ $fossile_sql = mysqli_query($conn,$fossil_query);
 $mineral_sql = mysqli_query($conn,$mineral_query);
 $meteorite_sql = mysqli_query($conn,$meteorite_query);
 $jewelry_sql = mysqli_query($conn,$jewelry_query);
-?>
-<?php
 
 if($page == "admin"){
     echo '
