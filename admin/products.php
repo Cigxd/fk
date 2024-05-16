@@ -77,6 +77,11 @@ $product = $conn->query($products_sql);
                         <?php
                             if($product->num_rows>0){
                                 while($row = $product->fetch_assoc()){
+                                  $image = $row['image'];
+                                 
+                                    if (strpos($image, '../../') === 0) {
+                                      $image = str_replace('../../', '../', $image);
+                                    }
                                     echo '<tr>';
                                     echo '<td>' . $row['product_id'] . '</td>';
                                     echo '<td>' . $row['sub_category'] . '</td>';
@@ -84,7 +89,7 @@ $product = $conn->query($products_sql);
                                     echo '<td>' . $row['price'] . '</td>';
                                     echo '<td>' . $row['quantity'] . '</td>';
                                     echo '<td>' . $row['created_date'] . '</td>';
-                                    echo '<td><img src="' . $row['image'] . '" alt="Product Image"></td>';
+                                    echo '<td><img src="' . $image . '" alt="Product Image"></td>';
                                     // echo '<td><img src="' . $row['qr_code'] . '" alt="Product Image"></td>';
                                     echo '<td>
                                           <a href="functions/view.php?id=' . $row['product_id'] . '&page=' . "product" . '" class="btn btn-secondary">View</a>
