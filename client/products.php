@@ -5,6 +5,7 @@ $fossil_query = "SELECT * FROM sub_category WHERE category_id = 1";
 $mineral_query = "SELECT * FROM sub_category WHERE category_id = 2";
 $meteorite_query = "SELECT * FROM sub_category WHERE category_id = 3";
 $jewelry_query = "SELECT * FROM sub_category WHERE category_id = 4";
+
 $fossile_sql = mysqli_query($conn, $fossil_query);
 $mineral_sql = mysqli_query($conn, $mineral_query);
 $meteorite_sql = mysqli_query($conn, $meteorite_query);

@@ -135,7 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="shortcut icon" href="../../bootstrap/dash/assets/images/favicon.png" />
   </head>
   <body>
-  <body>
 <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -337,7 +336,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </button>
           </div>
         </nav>
-</body>
+        
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">

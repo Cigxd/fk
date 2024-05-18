@@ -9,6 +9,7 @@ $mineral_sql = mysqli_query($conn,$mineral_query);
 $meteorite_sql = mysqli_query($conn,$meteorite_query);
 $jewelry_sql = mysqli_query($conn,$jewelry_query);
 
+
 if($page == "admin"){
     echo '
 <header id="header" class="header fixed-top">
