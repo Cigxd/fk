@@ -21,7 +21,9 @@ function time_diff_in_words($receive_at)
     $receive_time = strtotime($receive_at);
     $current_time = time();
     $time_difference = $current_time - $receive_time;
-    if ($time_difference > 60 * 60 * 24 * 365) {
+    if($time_difference > 60 * 60 * 24 * 365 * 100){
+        return floor($time_difference / (60 * 60 * 24 * 365 * 100)) . " century ago";
+    }elseif ($time_difference > 60 * 60 * 24 * 365) {
         return floor($time_difference / (60 * 60 * 24 * 365)) . " years ago";
     } elseif ($time_difference > 60 * 60 * 24) {
         return floor($time_difference / (60 * 60 * 24)) . " days ago";

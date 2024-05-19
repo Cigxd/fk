@@ -85,8 +85,14 @@
               </li>
 
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="functions/message.php"  aria-expanded="false">
-                  <i class="mdi mdi-email"></i>
+                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" onclick="new_tab()"  aria-expanded="false">
+                  <script>
+                    function new_tab() {
+                        var url = 'functions/message.php';
+                        window.open(url, '_blank');
+                    }
+                  </script>
+                <i class="mdi mdi-email"></i>
 
                   <?php
                   $query = "SELECT * FROM contact WHERE seen='0'";
@@ -128,8 +134,7 @@
                   ?>
                   <?php 
                       $query_order = "SELECT `order`.*,client.company_name AS 'client' FROM `order` left join client
-                      ON `order`.client_id = client.client_id
-                       WHERE seen='0'";
+                      ON `order`.client_id = client.client_id";
 
                       $sql_order = $conn->query($query_order);
                       ?>

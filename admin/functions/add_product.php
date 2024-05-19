@@ -214,7 +214,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </li>
 
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="../functions/message.php"  aria-expanded="false">
+                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" onlcik="new_tab()"  aria-expanded="false">
+                  <script>
+                    function new_tab(){
+                      let url = "message.php";
+                      window.open(url, '_blank');
+                    }
+                  </script>
                   <i class="mdi mdi-email"></i>
 
                   <?php

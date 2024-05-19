@@ -21,8 +21,6 @@ $products_sql = "SELECT product.*, sub_category.name AS 'sub_category' FROM prod
 $product = $conn->query($products_sql);
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
