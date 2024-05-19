@@ -48,13 +48,13 @@ if($page == "admin"){
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="#hero" class="">Home</a></li>
-        <li class="dropdown"><a href="#"><span>Contents</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
             <li class="dropdown"><a href="#"><span>Fossils</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>';
               if(mysqli_num_rows($fossile_sql) > 0){
                 while($row = mysqli_fetch_assoc($fossile_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }
@@ -64,7 +64,7 @@ if($page == "admin"){
               <ul>';
               if(mysqli_num_rows($mineral_sql) > 0){
                 while($row = mysqli_fetch_assoc($mineral_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }
@@ -74,7 +74,7 @@ if($page == "admin"){
               <ul>';
               if(mysqli_num_rows($meteorite_sql) > 0){
                 while($row = mysqli_fetch_assoc($meteorite_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }
@@ -84,7 +84,7 @@ if($page == "admin"){
               <ul>';
               if(mysqli_num_rows($jewelry_sql) > 0){
                 while($row = mysqli_fetch_assoc($jewelry_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }
@@ -141,13 +141,13 @@ if($page == "admin"){
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="#hero" class="">Home</a></li>
-        <li class="dropdown"><a href="#"><span>Contents</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
           <li class="dropdown"><a href="#"><span>Fossils</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>';
           if(mysqli_num_rows($fossile_sql) > 0){
             while($row = mysqli_fetch_assoc($fossile_sql)){
-              echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+              echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
             }
 
           }
@@ -157,7 +157,7 @@ if($page == "admin"){
           <ul>';
           if(mysqli_num_rows($mineral_sql) > 0){
             while($row = mysqli_fetch_assoc($mineral_sql)){
-              echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+              echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
             }
 
           }
@@ -167,7 +167,7 @@ if($page == "admin"){
           <ul>';
           if(mysqli_num_rows($meteorite_sql) > 0){
             while($row = mysqli_fetch_assoc($meteorite_sql)){
-              echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+              echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
             }
 
           }
@@ -177,7 +177,7 @@ if($page == "admin"){
           <ul>';
           if(mysqli_num_rows($jewelry_sql) > 0){
             while($row = mysqli_fetch_assoc($_sql)){
-              echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+              echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
             }
 
           }
@@ -264,14 +264,14 @@ if($page == "admin"){
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="#hero" class="">Home</a></li>
-        <li class="dropdown"><a href="#"><span>Contents</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
             <li class="dropdown"><a href="#"><span>Fossils</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>';
                 
                 if(mysqli_num_rows($fossile_sql) > 0){
                   while($row = mysqli_fetch_assoc($fossile_sql)){
-                    echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                    echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                   }
 
                 }
@@ -281,7 +281,7 @@ if($page == "admin"){
               <ul>';
               if(mysqli_num_rows($mineral_sql) > 0){
                 while($row = mysqli_fetch_assoc($mineral_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }
@@ -291,7 +291,7 @@ if($page == "admin"){
               <ul>';
               if(mysqli_num_rows($meteorite_sql) > 0){
                 while($row = mysqli_fetch_assoc($meteorite_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }
@@ -301,7 +301,7 @@ if($page == "admin"){
               <ul>';
               if(mysqli_num_rows($jewelry_sql) > 0){
                 while($row = mysqli_fetch_assoc($jewelry_sql)){
-                  echo '<li><a href="client/view_products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
+                  echo '<li><a href="client/products.php?id='.$row['id'].'">'.$row['name']. '</a></li>';
                 }
 
               }

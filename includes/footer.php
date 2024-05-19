@@ -1,4 +1,8 @@
 <?php
+include '../database/config.php';
+
+$sql = "SELECT * FROM `category`";
+$category = mysqli_query($conn, $sql);
 
 ?>
 
@@ -27,21 +31,26 @@
     <div class="col-lg-2 col-md-3 footer-links">
       <h4>Useful Links</h4>
       <ul>
-        <li><a href="">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="index.php#about">About us</a></li>
-        <li><a href="#">Terms of service</a></li>
-        <li><a href="#">Privacy policy</a></li>
+        <li><a href="terms.html">Terms of service</a></li>
+        <li><a href="policy.html">Privacy policy</a></li>
       </ul>
     </div>
 
     <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Categories</h4>
-      <ul>
-        <li><a href="#">Fossils</a></li>
-        <li><a href="#">Minerals</a></li>
-        <li><a href="#">Meteorites</a></li>
-        <li><a href="#">Jewelry</a></li>
-      </ul>
+      <?php
+      if(mysqli_num_rows($category) > 0){
+        echo '<h4>Categories</h4>';
+        echo '<ul>';
+        while($row = mysqli_fetch_assoc($category)){
+            echo '<li><a href="client/products.php?cat_id=' . $row['id'] . '">' . $row['name'] . '</a></li>';
+        }
+        echo '</ul>';
+      }else{
+        echo '<h4>No Category Found!</h4>';
+      }
+      ?>
     </div>
 
   </div>
