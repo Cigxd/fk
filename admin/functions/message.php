@@ -1,6 +1,8 @@
 <?php
 include '../../database/config.php';
-
+////////////////////////////////////session
+require '../../database/sessions/admin_session.php';
+////////////////////////////////////end session
 $query = "SELECT * FROM `contact`";
 
 ////////////////////////////////////start calculating unseen messages

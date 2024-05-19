@@ -1,12 +1,7 @@
 <?php
 include '../../database/config.php';
 ////////////////////////////////////session
-session_start();
-if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
-  // Redirect to login page or other appropriate page
-  header("Location: ../login.php");
-  exit();
-}
+require '../../database/sessions/admin_session.php';
 ////////////////////////////////////end session
 
 if($_GET['page'] == 'product'){

@@ -1,8 +1,9 @@
 <?php
 include '../../database/config.php';
 include "../../includes/phpqrcode/qrlib.php";
-
- // include '../../database/sessions/admin_session.php';
+////////////////////////////////////session
+require '../../database/sessions/admin_session.php';
+////////////////////////////////////end session
  $sql = "SELECT username FROM admin WHERE id = 1";
  $admin = $conn->query($sql);
  $row = $admin->fetch_assoc();
@@ -214,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </li>
 
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" onlcik="new_tab()"  aria-expanded="false">
+                <a class="nav-link count-indicator dropdown-toggle" id="3geDropdown" href="#" onlcik="new_tab()"  aria-expanded="false">
                   <script>
                     function new_tab(){
                       let url = "message.php";
