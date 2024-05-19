@@ -1,12 +1,7 @@
 <?php
 include '../database/config.php';
-////////////////////////////////////session start
-session_start();
-if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
-  // Redirect to login page or other appropriate page
-  header("Location: ../login.php");
-  exit();
-}
+////////////////////////////////////session
+require '../database/sessions/admin_session.php';
 ////////////////////////////////////end session
 
 ////////////////////////////////////get username start
