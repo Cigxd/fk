@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 
   //////////qr code 
-    $query = "SELECT (product_id+1) AS max from product";
+    $query = "SELECT MAX(product_id+1) AS max from product";
     $sql = mysqli_query($conn,$query);
-    $new_id = mysqli_fetch_assoc($sql);
+    while($new_id = mysqli_fetch_assoc($sql)){
 
     // how to save PNG codes to server
     
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!file_exists($pngAbsoluteFilePath)) {
         QRcode::png($codeContents, $pngAbsoluteFilePath);
     }
-
+  }
   
     // Depending on the category, you can retrieve additional fields
     if ($category == "fossil") {

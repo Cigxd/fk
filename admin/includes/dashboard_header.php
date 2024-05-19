@@ -126,8 +126,8 @@
                   <?php
                   $query_order = "SELECT * FROM `order` WHERE seen='0'";
                   $sql_order = mysqli_query($conn,$query_order);
-                  if(mysqli_num_rows($sql)>0){
-                  echo'<span class="count bg-danger"></span>';
+                  if(mysqli_num_rows($sql_order)>0){
+                    echo'<span class="count bg-danger"></span>';
                   }else{
                     echo'<span class="count bg-false"></span>';
                   }

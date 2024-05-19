@@ -97,7 +97,10 @@ $sql_messages = mysqli_query($conn, $message_query);
                         <button type="submit" class="btn btn-light" name="trash">
                             <span class="fa fa-trash-o"></span>
                         </button>
-                        
+                        <button type="button" class="btn btn-light" onclick="checkAll()">
+                            <span class="fa fa-check-square-o"></span> Select All
+                        </button>
+
                         <div class="btn-group">
                         </div>
                     </div>
@@ -112,7 +115,7 @@ $sql_messages = mysqli_query($conn, $message_query);
                                     echo "<li class='message'>
                                             <a>
                                                 <div class='actions'>
-                                                    <span class='action'><input type='checkbox' name='message_ids[]' value='{$row['message_id']}'></span>
+                                                    <span class='action'><input class='checkbox' type='checkbox' name='message_ids[]' value='{$row['message_id']}'></span>
                                                 </div>
                                                 <div class='header'>
                                                     <span class='from'>{$row['name']}</span>
@@ -135,6 +138,19 @@ $sql_messages = mysqli_query($conn, $message_query);
             </div>
         </div>
     </form>
+    <script>
+    function checkAll() {
+        var checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkbox.checked = false; // Uncheck if checked
+            } else {
+                checkbox.checked = true; // Check if not checked
+            }
+        });
+    }
+</script>
+
 </body>
 
 </html>
