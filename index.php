@@ -71,7 +71,6 @@ try{
 
 
 <?php
-$page = "";
 include 'includes/header.php';
 ?>
 
@@ -269,8 +268,8 @@ include 'includes/header.php';
 </main>
 <?php
    include 'includes/footer.php';
-   
-   ?>
+?>
+
 <!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 <div id="preloader"></div>
