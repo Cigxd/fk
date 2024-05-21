@@ -58,8 +58,6 @@ try {
                 $msg = "Error registering!";
             }
         }
-    } else {
-        $msg = "Error!";
     }
 } catch (Exception $e) {
     $msg = "Error: " . $e->getMessage();
@@ -111,7 +109,7 @@ try {
             <form method="POST" action="register.php">
             <?php
             
-            if(isset($msg)){
+            if(!empty($msg)){
                 echo '
                     <div class="alert alert-danger mt-4" role="alert">
                         '. $msg .'
@@ -179,6 +177,7 @@ try {
               <input type="hidden" name="created_date" value="<?php echo $created_date; ?>">
               <div class="mt-4 pt-2">
                 <button type="submit" name="submit" class="btn btn-danger btn-lg">Register</button>
+                <a href="login.php" class="btn btn-secondary btn-lg">Login</a>
               </div>
             </form>
           </div>

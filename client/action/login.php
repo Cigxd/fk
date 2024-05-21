@@ -3,7 +3,7 @@ session_start(); // Start the session if not already started
 require_once '../path/to/checkUserSession.php'; // Include session checking function
 include '../../database/config.php'; // Include your database connection
 
-$msg = ''; // Initialize message variable
+$msg = '';
 
 try {
     if (isset($_POST['submit'])) {
@@ -34,8 +34,6 @@ try {
         } else {
             $msg = "Email not found!";
         }
-    } else {
-        $msg = "Form submission error!";
     }
 } catch (Exception $e) {
     $msg = "Error: " . $e->getMessage();
@@ -86,7 +84,7 @@ try {
             <form method="POST" action="login.php">
             <?php
             
-            if(isset($msg)){
+            if(!empty($msg)){
                 echo '
                     <div class="alert alert-danger mt-4" role="alert">
                         '. $msg .'
