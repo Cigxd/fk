@@ -1,37 +1,6 @@
 <?php
+include 'client/functions/contact.php';
 require 'database/config.php';
-
-// if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message']) && isset($_POST['subject'])){
-//   $query = "INSERT INTO contact(name,email,message,subject) VALUES ('{$_POST['name']}','{$_POST['email']}','{$_POST['message']}','{$_POST['subject']}')";
-//   mysqli_query($conn,$query);
-// }
-$currentDateTime = new DateTime();
-$time = $currentDateTime->format('Y-m-d H:i:s');
-
-try{
-  if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-    $subject = $_POST['subject'];
-  
-    $sql = "INSERT INTO `contact` (`name`, `email`, `message`, `subject`, `receive_at`)
-            VALUES (?,?,?,?,?)";
-    $send = $conn->prepare($sql);
-    $send->bind_param('sssss', $name, $email, $message, $subject, $time);
-
-    $result = $send->execute();
-  
-    if($result == true){
-      header('Location: ' . $_SERVER['REQUEST_URI']);
-    }else{
-      $msg = "Can't send any message at this moment!";
-    }
-  
-  }
-}catch(Exception $e){
-  $msg = "Error: " . $e->getMessage();
-}
 
 
 ?>
@@ -71,7 +40,6 @@ try{
 
 
 <?php
-$page = "";
 include 'includes/header.php';
 ?>
 
@@ -241,27 +209,20 @@ include 'includes/header.php';
             </div>
             <!-- End Google Maps -->
             <div class="col-lg-6">
-               <form action="index.php" method="POST">
-                  <div class="row gy-4">
-                     <div class="col-md-6">
-                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                     </div>
-                     <div class="col-md-6 ">
-                        <input type="email" class="form-control" name="email" placeholder="Email" required>
-                     </div>
-                     <div class="col-md-12">
-                        <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-                     </div>
-                     <div class="col-md-12">
-                        <textarea class="form-control" name="message" rows="6" placeholder="Write your message here.." required></textarea>
-                     </div>
-                     <div class="col-md-12 text-center">
-                        <button class="btn btn-danger" type="submit" name="submit">Send Message</button>
-                     </div>
-                  </div>
-               </form>
+            </form>
+               <?php
+               // Process form submission
+               if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+                   $result = processContactForm($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']);
+                   if ($result === true) {
+                       echo '<p class="text-success">Message sent successfully!</p>';
+                   } else {
+                       echo '<p class="text-danger">Failed to send message. Please try again later.</p>';
+                   }
+               }
+               ?>
             </div>
-            <!-- End Contact Form -->
+            <!-- End Contact Form -
          </div>
       </div>
    </section>
@@ -269,8 +230,8 @@ include 'includes/header.php';
 </main>
 <?php
    include 'includes/footer.php';
-   
-   ?>
+?>
+
 <!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 <div id="preloader"></div>
