@@ -1,33 +1,7 @@
 <?php
-require_once 'path/to/checkUserSession.php';
-checkUserSession();
-include '../database/config.php';
-
 include 'functions/contact.php';
+require '../database/config.php';
 
-$client_id = $_SESSION['client_id'];
-
-$sql = "SELECT * FROM `client` WHERE client_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('i', $client_id);
-$stmt->execute();
-
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-    // email / company_name / company_type / company_address / legal_company / TAX_id / created_date
-    $data = $result->fetch_assoc();
-
-    $email = $data['email'];
-    $company_name = $data['company_name'];
-    $company_type = $data['company_type'];
-    $company_address = $data['company_address'];
-    $legal_company = $data['legal_company'];
-    $TAX_id = $data['TAX_id'];
-    $created_date = $data['created_date'];
-
-} else {
-    $company_name = "Client not found";
-}
 
 ?>
 
@@ -62,9 +36,14 @@ if ($result->num_rows > 0) {
 </head>
 <body class="index-page">
 
+
+
+
 <?php
-include '../includes/header.php'; // Include header.php if it contains necessary HTML or PHP for your header
+include '../includes/header.php';
 ?>
+
+
 
 <main class="main">
    <!-- Hero Section -->
@@ -191,16 +170,16 @@ include '../includes/header.php'; // Include header.php if it contains necessary
    <!-- Contact Section -->
    <section id="contact" class="contact section">
       <!-- Section Title -->
-      <div class="container section-title">
-         <span>Contact</span>
-         <h2>Contact</h2>
-         <p>Check our contact info</p>
+      <div class="container section-title" >
+         <span class="">Contact</span>
+         <h2 class="">Contact</h2>
+         <p>Check our conbtact info</p>
       </div>
       <!-- End Section Title -->
-      <div class="container" data-aos-delay="100">
+      <div class="container"  data-aos-delay="100">
          <div class="row gy-4">
             <div class="col-lg-6">
-               <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos-delay="200">
+               <div class="info-item d-flex flex-column justify-content-center align-items-center"  data-aos-delay="200">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
                   <p>Taounate 34000</p>
@@ -208,7 +187,7 @@ include '../includes/header.php'; // Include header.php if it contains necessary
             </div>
             <!-- End Info Item -->
             <div class="col-lg-3 col-md-6">
-               <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos-delay="300">
+               <div class="info-item d-flex flex-column justify-content-center align-items-center"  data-aos-delay="300">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
                   <p>+212 5 77 83 08 36</p>
@@ -216,7 +195,7 @@ include '../includes/header.php'; // Include header.php if it contains necessary
             </div>
             <!-- End Info Item -->
             <div class="col-lg-3 col-md-6">
-               <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos-delay="400">
+               <div class="info-item d-flex flex-column justify-content-center align-items-center"  data-aos-delay="400">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
                   <p>brilliancemuseum@gmail.com</p>
@@ -230,49 +209,30 @@ include '../includes/header.php'; // Include header.php if it contains necessary
             </div>
             <!-- End Google Maps -->
             <div class="col-lg-6">
-               <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                  <div class="row gy-4">
-                     <div class="col-md-6">
-                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                     </div>
-                     <div class="col-md-6">
-                        <input type="email" class="form-control" name="email" placeholder="Email" required>
-                     </div>
-                     <div class="col-md-12">
-                        <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-                     </div>
-                     <div class="col-md-12">
-                        <textarea class="form-control" name="message" rows="6" placeholder="Write your message here.." required></textarea>
-                     </div>
-                     <div class="col-md-12 text-center">
-                        <button class="btn btn-danger" type="submit" name="submit">Send Message</button>
-                     </div>
-                  </div>
-               </form>
+            </form>
                <?php
                // Process form submission
                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                    $result = processContactForm($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']);
                    if ($result === true) {
                        echo '<p class="text-success">Message sent successfully!</p>';
-                       // Optionally, you can redirect the user to a thank you page or display a success message
                    } else {
                        echo '<p class="text-danger">Failed to send message. Please try again later.</p>';
                    }
                }
                ?>
             </div>
-            <!-- End Contact Form -->
+            <!-- End Contact Form -
          </div>
       </div>
    </section>
    <!-- /Contact Section -->
 </main>
-
 <?php
-include '../includes/footer.php'; // Include footer.php if it contains necessary HTML or PHP for your footer
+   include '../includes/footer.php';
 ?>
 
+<!-- Scroll Top -->
 
 <!-- Vendor JS Files -->
 <script src="../bootstrap/Day/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -283,6 +243,6 @@ include '../includes/footer.php'; // Include footer.php if it contains necessary
 <script src="../bootstrap/Day/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="../bootstrap/Day/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <!-- Main JS File -->
-<script src="../bootstrap/Day/assets/js/main.js"></script>
+<!-- <script src="bootstrap/Day/assets/js/main.js"></script> -->
 </body>
 </html>
