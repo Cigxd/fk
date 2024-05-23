@@ -245,19 +245,41 @@ include 'client/functions/contact.php';
             </div>
             <!-- End Google Maps -->
             <div class="col-lg-6">
-            </form>
-               <?php
-               // Process form submission
-               if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-                   $result = processContactForm($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']);
-                   if ($result === true) {
-                       echo '<p class="text-success">Message sent successfully!</p>';
-                   } else {
-                       echo '<p class="text-danger">Failed to send message. Please try again later.</p>';
-                   }
-               }
-               ?>
+               <form action="index.php" method="POST">
+                  <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                  </div>
+                  <button type="submit" name="submit" class="btn btn-danger mt-4">Submit</button>
+               </form>
             </div>
+
+            <?php
+            // Process form submission
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+               $result = processContactForm($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']);
+               if ($result === true) {
+                  echo '<p class="text-success">Message sent successfully!</p>';
+               } else {
+                  echo '<p class="text-danger">Failed to send message. Please try again later.</p>';
+               }
+            }
+            ?>
+            <!-- End Contact Form -->
+         </div>
+
             <!-- End Contact Form -
          </div>
       </div>

@@ -1,7 +1,7 @@
 <?php
 $page = 'home';
-//require_once '../path/to/checkUserSession.php';
-//checkUserSession();
+require_once '../path/to/checkUserSession.php';
+checkUserSession();
 
 // Destroy the session and unset session variables
 session_destroy();

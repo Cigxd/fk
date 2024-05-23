@@ -1,7 +1,7 @@
 <?php
 $page = 'home';
-//session_start(); // Start the session if not already started
-//require '../path/to/checkUserSession.php'; // Include session checking function
+session_start(); // Start the session if not already started
+require '../path/to/checkUserSession.php'; // Include session checking function
 include '../../database/config.php'; // Include your database connection
 
 $msg = '';
@@ -73,7 +73,6 @@ try {
 </head>
 <body class="index-page">
 
-<!--<?php/// include '../../includes/header.php'; ?>-->
 
 <section class="vh-120 gradient-custom mt-4">
   <div class="container py-5 h-100">

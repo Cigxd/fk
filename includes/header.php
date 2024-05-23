@@ -52,7 +52,7 @@ if($page == 'client'){
             </a>
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="">Home</a></li>
+                    <li><a href="../client/home.php" class="">Home</a></li>
                     <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li class="dropdown"><a href="#"><span>Fossils</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -93,8 +93,8 @@ if($page == 'client'){
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="../client/home.php#about">About</a></li>
+                    <li><a href="../client/home.php#contact">Contact</a></li>
                     <li><a href="action/logout.php">Log out</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
