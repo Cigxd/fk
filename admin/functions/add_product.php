@@ -68,32 +68,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rockType = NULL;
         $mineralEnvironment = NULL;
         $sub_category = $_POST['Sub_select_fossil'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,`fossile_period`,`price`,`quantity`,`image`,`qr_code`,`description`)
-        VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";
+        $insert_query = "INSERT INTO product (sub_category_id,`name`,`fossile_period`,`price`,`quantity`,`image`,`qr_code`,`description`,`created_date`)
+        VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}' , NOW())";
         // Process fossil data
     } elseif ($category == "mineral") {
         $mineralEnvironment = $_POST["mineralEnvironment"];
         $fossilPeriod = NULL;
         $rockType = NULL;
         $sub_category = $_POST['Sub_select_mineral'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,mineral_envirement,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}', '{$_POST['env']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";
+        $insert_query = "INSERT INTO product (sub_category_id,`name`,mineral_envirement,price,quantity,`image`,qr_code,`description`,`created_date`)
+        VALUES('$sub_category','{$_POST['name']}', '{$_POST['env']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}',NOW())";
         // Process mineral data
     } elseif ($category == "jewelry") {
         $rockType = $_POST["type"];
         $fossilPeriod = NULL;
         $mineralEnvironment = NULL;
         $sub_category = $_POST['Sub_select_jewelry'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,rock_type,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}', '{$_POST['type']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";
+        $insert_query = "INSERT INTO product (sub_category_id,`name`,rock_type,price,quantity,`image`,qr_code,`description`,`created_date`)
+        VALUES('$sub_category','{$_POST['name']}', '{$_POST['type']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}',NOW())";
         // Process jewelry data
     }else if($category == "meteorite"){
         $rockType = NULL;
         $fossilPeriod = NULL;
         $mineralEnvironment = NULL;
         $sub_category = $_POST['Sub_select_meteorite'];
-        $insert_query = "INSERT INTO product (sub_category_id,`name`,price,quantity,`image`,qr_code,`description`)
-        VALUES('$sub_category','{$_POST['name']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}')";////////////////////////////////////////////////////////NOT DONE YET!!!!!!!!!!!!
+        $insert_query = "INSERT INTO product (sub_category_id,`name`,price,quantity,`image`,qr_code,`description`,`created_date`)
+        VALUES('$sub_category','{$_POST['name']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}',NOW())";////////////////////////////////////////////////////////NOT DONE YET!!!!!!!!!!!!
     }
     // Execute SQL query
     // $result = mysqli_query($conn, $sql);
