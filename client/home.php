@@ -114,9 +114,9 @@ if ($products->num_rows > 0) {
                              <p><strong>Mineral Environment: </strong>' . $mineral_envirement . '</p>
                              <p><strong>Fossil Period: </strong>' . $fossile_period . '</p>
                              <p><strong>Rock Type: </strong>' . $rock_type . '</p>
-                             <p><strong>Price: </strong>' . $price . '</p>
+                             <p><strong>Price: </strong>$ ' . $price . '</p>
                              <p><strong>Quantity: </strong>' . $quantity . '</p>
-                             <p><strong>Created Date: </strong>' . $created_date . '</p>
+                             <p><strong>Published at: </strong>' . $created_date . '</p>
                              <p><strong>Description: </strong>' . $description . '</p>
                          </div>
                          <div class="col-md-6">
@@ -335,19 +335,18 @@ if ($products->num_rows > 0) {
 <!-- Scroll Top -->
 
 <!-- Vendor JS Files -->
-<script src="../bootstrap/Day/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../bootstrap/Day/assets/vendor/php-email-form/validate.js"></script>
-<script src="../bootstrap/Day/assets/vendor/aos/aos.js"></script>
-<script src="../bootstrap/Day/assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="../bootstrap/Day/assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="../bootstrap/Day/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-<script src="../bootstrap/Day/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<!-- Main JS File -->
-<!-- <script src="bootstrap/Day/assets/js/main.js"></script> -->
-
-<!-- jQuery and Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Vendor JS Files -->
+   <script src="../bootstrap/Day/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../bootstrap/Day/assets/vendor/php-email-form/validate.js"></script>
+   <script src="../bootstrap/Day/assets/vendor/aos/aos.js"></script>
+   <script src="../bootstrap/Day/assets/vendor/swiper/swiper-bundle.min.js"></script>
+   <script src="../bootstrap/Day/assets/vendor/glightbox/js/glightbox.min.js"></script>
+   <script src="../bootstrap/Day/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+   <script src="../bootstrap/Day/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+   <!-- Main JS File -->
+   <script src="../bootstrap/Day/assets/js/main.js"></script>
 
 </body>
 </html>
