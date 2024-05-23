@@ -77,6 +77,13 @@ if ($products->num_rows > 0) {
         $image = $row['image'];
         $qr_code = $row['qr_code'];
         $description = $row['description'];
+                       
+        if (strpos($image, '../../') === 0) {
+          $image = str_replace('../../', '../', $image);
+        }
+        $qr_code = str_replace('005', '../uploads/products/005', $qr_code);
+
+
 
         echo '<div class="col">
                  <div class="card h-100 p-2 rounded bg-dark">

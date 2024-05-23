@@ -69,13 +69,7 @@
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
-                </form>
-              </li>
-            </ul>
+            
 
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item d-none d-lg-block">
@@ -147,7 +141,7 @@
                   <?php 
                     if(mysqli_num_rows($sql_order)>0){
                      while($row_order = $sql_order -> fetch_assoc()){
-                    echo '<a class="dropdown-item preview-item">
+                    echo '<a href="orders.php" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-calendar text-success"></i>
@@ -160,7 +154,7 @@
                           </a>';
                      }
                 }else{
-                  echo '<a class="dropdown-item preview-item">
+                  echo '<a href="orders.php" class="dropdown-item preview-item">
                 <div class="preview-item-content">
                 <p>No notifications at this moment</p>
                       </div>

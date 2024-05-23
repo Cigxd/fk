@@ -1,6 +1,8 @@
 <?php
 $page = 'home';
 include '../database/config.php';
+require_once 'path/to/checkUserSession.php';
+checkUserSession();
 
 if (isset($_GET['id'])) {
     $sub_category_id = $_GET['id'];

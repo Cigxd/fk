@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand" style="color: while; text-decoration:none;" href="../../index.php">
+          <a class="sidebar-brand" style="color: while; text-decoration:none;" href="../dashboard.php">
             <h1>Brilliance</h1>
         </a>
           <a class="sidebar-brand brand-logo-mini" href="../../../index.html"><img src="../bootstrap/dash/assets/images/logo-mini.svg" alt="logo" /></a>
@@ -199,13 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
-                </form>
-              </li>
-            </ul>
+            
 
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item d-none d-lg-block">
@@ -215,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </li>
 
               <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" id="3geDropdown" href="#" onlcik="new_tab()"  aria-expanded="false">
+                <a class="nav-link count-indicator dropdown-toggle" id="3geDropdown" href="#" onclick="new_tab()"  aria-expanded="false">
                   <script>
                     function new_tab(){
                       let url = "message.php";
@@ -256,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <?php
                   $query_order = "SELECT * FROM `order` WHERE seen='0'";
                   $sql_order = mysqli_query($conn,$query_order);
-                  if(mysqli_num_rows($sql)>0){
+                  if(mysqli_num_rows($sql_order)>0){
                   echo'<span class="count bg-danger"></span>';
                   }else{
                     echo'<span class="count bg-false"></span>';
@@ -278,7 +272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <?php 
                     if(mysqli_num_rows($sql_order)>0){
                      while($row_order = $sql_order -> fetch_assoc()){
-                    echo '<a class="dropdown-item preview-item">
+                    echo '<a href="../orders.php" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-calendar text-success"></i>
@@ -291,7 +285,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           </a>';
                      }
                 }else{
-                  echo '<a class="dropdown-item preview-item">
+                  echo '<a href="../orders.php" class="dropdown-item preview-item">
                 <div class="preview-item-content">
                 <p>No notifications at this moment</p>
                       </div>
@@ -315,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                   <h6 class="p-3 mb-0">Profile</h6>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a href="../setting.php" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-settings text-success"></i>

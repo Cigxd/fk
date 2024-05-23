@@ -1,7 +1,7 @@
 <?php
+include '../database/config.php';
 require_once 'path/to/checkUserSession.php';
 checkUserSession();
-include '../database/config.php';
 
 
 

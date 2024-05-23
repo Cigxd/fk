@@ -1,9 +1,9 @@
 <?php
 $page = 'home';
-session_start(); // Start the session if not already started
-require '../path/to/checkUserSession.php'; // Include session checking function
-include '../../database/config.php'; // Include your database connection
+// Start the session if not already started
 
+include '../../database/config.php'; // Include your database connection
+require '../path/to/checkUserSession.php'; // Include session checking function
 $msg = '';
 
 try {

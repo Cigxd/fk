@@ -49,7 +49,7 @@ $order = $conn->query($order_sql);
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Products</h4>
+            <h4 class="card-title">Orders</h4>
             <div class="table-responsive">
                 <table class="table table-dark table-hover">
                     <thead>
