@@ -2,6 +2,11 @@
 $page = 'client';
 require '../database/config.php';
 include 'functions/contact.php';
+include 'functions/list_products.php';
+require_once 'path/to/checkUserSession.php';
+checkUserSession();
+
+$products = list_products_by_time($conn);
 
 
 ?>
@@ -40,28 +45,102 @@ include 'functions/contact.php';
 
 
 
-<?php
-
-include '../includes/header.php';
-?>
+<?php include '../includes/header.php'; ?>
 
 
 
 <main class="main">
    <!-- Hero Section -->
-   <section id="hero" class="hero section">
-      <img src="../resources/thumb-1920-632955.jpg" alt="" data-aos="fade-in">
-      <div class="container"  data-aos-delay="100">
-         <div class="row justify-content-start">
-            <div class="col-lg-8">
-               <h2 class="">Welcome to Brilliance</h2>
-               <p>Welcome to Brillance - Where Every Stone Holds a Story</p>
-               <a href="login.php" class="btn-get-started">Login</a>
-            </div>
-         </div>
-      </div>
-   </section>
+
    <!-- /Hero Section -->
+   <!-- Hero Section -->
+<section class="hero-section mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="sub-category-title mt-4 bg-danger p-2 rounded text-light">Latest Products</h1>
+            </div>
+        </div>
+        <?php
+if ($products->num_rows > 0) {
+    echo '<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">';
+    while ($row = $products->fetch_assoc()) {
+        $product_id = $row['product_id'];
+        $sub_category_id = $row['sub_category_id'];
+        $name = $row['name'];
+        $mineral_envirement = $row['mineral_envirement'];
+        $fossile_period = $row['fossile_period'];
+        $rock_type = $row['rock_type'];
+        $price = $row['price'];
+        $quantity = $row['quantity'];
+        $created_date = $row['created_date'];
+        $image = $row['image'];
+        $qr_code = $row['qr_code'];
+        $description = $row['description'];
+
+        echo '<div class="col">
+                 <div class="card h-100 p-2 rounded bg-dark">
+                    <img src="' . $image . '" class="card-img-top" alt="Product Image" style="max-height: 200px;">
+                    <div class="card-body">
+                          <h5 class="card-title text-light">' . $name . '</h5>
+                          <p class="card-text text-light">' . $description . '</p>
+                          <div class="d-flex flex-column mt-4">
+                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#productModal' . $product_id . '">Details</button>
+                             <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-secondary btn-sm mt-2" type="button">
+                                Add to Cart
+                             </button>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 <!-- Modal -->
+                 <div class="modal fade bd-example-modal-lg" id="productModal' . $product_id . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel' . $product_id . '" aria-hidden="true">
+                 <div class="modal-dialog modal-lg" role="document">
+                     <div class="modal-content">
+                     <div class="modal-header">
+                         <h5 class="modal-title" id="exampleModalLabel' . $product_id . '">Product Details</h5>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                         </button>
+                     </div>
+                     <div class="modal-body">
+                         <div class="row">
+                         <div class="col-md-6">
+                             <img src="' . $image .'" class="img-fluid" alt="Product Image">
+                         </div>
+                         <div class="col-md-6">
+                             <h4>' . $name . '</h4>
+                             <p><strong>Mineral Environment: </strong>' . $mineral_envirement . '</p>
+                             <p><strong>Fossil Period: </strong>' . $fossile_period . '</p>
+                             <p><strong>Rock Type: </strong>' . $rock_type . '</p>
+                             <p><strong>Price: </strong>' . $price . '</p>
+                             <p><strong>Quantity: </strong>' . $quantity . '</p>
+                             <p><strong>Created Date: </strong>' . $created_date . '</p>
+                             <p><strong>Description: </strong>' . $description . '</p>
+                         </div>
+                         <div class="col-md-6">
+                             <p><strong>QR Code: </strong> <br><br> <span class="p-4"><img src="' . $qr_code . '" width="100px"></span></p>
+                         </div>
+                         </div>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-danger">Add to Cart</button>
+                     </div>
+                     </div>
+                 </div>
+                 </div>';
+    }
+    echo '</div>';
+} else {
+    echo 'No products found.';
+}
+?>
+
+
+    </div>
+</section>
    <!-- About Section -->
    <section id="about" class="about section">
       <!-- Section Title -->
@@ -211,20 +290,39 @@ include '../includes/header.php';
             </div>
             <!-- End Google Maps -->
             <div class="col-lg-6">
-            </form>
-               <?php
-               // Process form submission
-               if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-                   $result = processContactForm($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']);
-                   if ($result === true) {
-                       echo '<p class="text-success">Message sent successfully!</p>';
-                   } else {
-                       echo '<p class="text-danger">Failed to send message. Please try again later.</p>';
-                   }
-               }
-               ?>
+               <form action="home.php" method="POST">
+                  <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                  </div>
+                  <button type="submit" name="submit" class="btn btn-danger mt-4">Submit</button>
+               </form>
             </div>
-            <!-- End Contact Form -
+
+            <?php
+            // Process form submission
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+               $result = processContactForm($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']);
+               if ($result === true) {
+                  echo '<p class="text-success">Message sent successfully!</p>';
+               } else {
+                  echo '<p class="text-danger">Failed to send message. Please try again later.</p>';
+               }
+            }
+            ?>
+            <!-- End Contact Form -->
          </div>
       </div>
    </section>
@@ -246,5 +344,10 @@ include '../includes/header.php';
 <script src="../bootstrap/Day/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <!-- Main JS File -->
 <!-- <script src="bootstrap/Day/assets/js/main.js"></script> -->
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

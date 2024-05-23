@@ -27,7 +27,7 @@ function checkUserSession()
         // </div>
         // ';
 
-        header("Location: ../login.php");
+        header("Location: action/login.php");
 
         exit;
     }
