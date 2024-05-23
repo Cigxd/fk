@@ -40,6 +40,7 @@ require 'database/config.php';
 
 
 <?php
+$page = 'index';
 include 'includes/header.php';
 ?>
 

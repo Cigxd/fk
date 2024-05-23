@@ -1,5 +1,5 @@
 <?php
-require_once '../client/path/to/checkUserSession.php';
+// require_once '../client/path/to/checkUserSession.php';
 include 'database/config.php';
 
 
@@ -12,6 +12,16 @@ $fossile_sql = mysqli_query($conn, $fossil_query);
 $mineral_sql = mysqli_query($conn, $mineral_query);
 $meteorite_sql = mysqli_query($conn, $meteorite_query);
 $jewelry_sql = mysqli_query($conn, $jewelry_query);
+
+
+if($page === 'index'){
+    $ref_link = "client/products.php?id";
+    $home = "index.php";
+}else{
+    $ref_link = "products.php?id";
+    $home = "../index.php";
+}
+
 ?>
 
 <header id="header" class="header fixed-top">
@@ -36,7 +46,7 @@ $jewelry_sql = mysqli_query($conn, $jewelry_query);
 
     <div class="branding d-flex align-items-center">
         <div class="container position-relative d-flex align-items-center justify-content-between">
-            <a href="#" class="logo d-flex align-items-center">
+            <a href="<?php echo $home ?>" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <h1 class="sitename">Brilliance</h1>
@@ -50,7 +60,7 @@ $jewelry_sql = mysqli_query($conn, $jewelry_query);
                                 <ul>
                                     <?php if(mysqli_num_rows($fossile_sql) > 0): ?>
                                         <?php while($row = mysqli_fetch_assoc($fossile_sql)): ?>
-                                            <li><a href="client/products.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
+                                            <li><a href="<?php echo $ref_link ?>=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
                                         <?php endwhile; ?>
                                     <?php endif; ?>
                                 </ul>
@@ -59,7 +69,7 @@ $jewelry_sql = mysqli_query($conn, $jewelry_query);
                                 <ul>
                                     <?php if(mysqli_num_rows($mineral_sql) > 0): ?>
                                         <?php while($row = mysqli_fetch_assoc($mineral_sql)): ?>
-                                            <li><a href="client/products.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
+                                            <li><a href="<?php echo $ref_link ?>=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
                                         <?php endwhile; ?>
                                     <?php endif; ?>
                                 </ul>
@@ -68,7 +78,7 @@ $jewelry_sql = mysqli_query($conn, $jewelry_query);
                                 <ul>
                                     <?php if(mysqli_num_rows($meteorite_sql) > 0): ?>
                                         <?php while($row = mysqli_fetch_assoc($meteorite_sql)): ?>
-                                            <li><a href="client/products.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
+                                            <li><a href="<?php echo $ref_link ?>=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
                                         <?php endwhile; ?>
                                     <?php endif; ?>
                                 </ul>
@@ -77,7 +87,7 @@ $jewelry_sql = mysqli_query($conn, $jewelry_query);
                                 <ul>
                                     <?php if(mysqli_num_rows($jewelry_sql) > 0): ?>
                                         <?php while($row = mysqli_fetch_assoc($jewelry_sql)): ?>
-                                            <li><a href="client/products.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
+                                            <li><a href="<?php echo $ref_link ?>=<?= $row['id'] ?>"><?= htmlspecialchars($row['name']) ?></a></li>
                                         <?php endwhile; ?>
                                     <?php endif; ?>
                                 </ul>
@@ -86,9 +96,7 @@ $jewelry_sql = mysqli_query($conn, $jewelry_query);
                     </li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <?php if(!checkUserSession()): ?>
-                        <li><a href="client/login.php">Login</a></li>
-                    <?php endif; ?>
+                    <li><a href="client/login.php">Login</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
