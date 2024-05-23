@@ -1,6 +1,6 @@
 <?php
 // require_once '../client/path/to/checkUserSession.php';
-include 'database/config.php';
+//include 'database/config.php';
 
 
 $fossil_query = "SELECT * FROM sub_category WHERE category_id = 1";
@@ -13,10 +13,9 @@ $mineral_sql = mysqli_query($conn, $mineral_query);
 $meteorite_sql = mysqli_query($conn, $meteorite_query);
 $jewelry_sql = mysqli_query($conn, $jewelry_query);
 
-
-if($page === 'index'){
-    $ref_link = "client/products.php?id";
-    $home = "index.php";
+if($page == 'client'){
+    $ref_link = "products.php?id";
+    $home = "home.php";
 }else{
     $ref_link = "products.php?id";
     $home = "../index.php";
@@ -96,7 +95,7 @@ if($page === 'index'){
                     </li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="client/login.php">Login</a></li>
+                    <li><a href="action/logout.php">Log out</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

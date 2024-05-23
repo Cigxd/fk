@@ -1,4 +1,5 @@
 <?php
+$page = 'home';
 include '../database/config.php';
 
 if (isset($_GET['id'])) {

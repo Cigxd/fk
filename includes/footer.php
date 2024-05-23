@@ -1,6 +1,4 @@
 <?php
-include '../database/config.php';
-
 $sql = "SELECT * FROM `category`";
 $category = mysqli_query($conn, $sql);
 

@@ -1,5 +1,5 @@
 <?php
-include '../../database/config.php';
+
 
 /**
  * Processes the contact form submission.

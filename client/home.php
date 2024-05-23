@@ -1,6 +1,7 @@
 <?php
-include 'functions/contact.php';
+$page = 'client';
 require '../database/config.php';
+include 'functions/contact.php';
 
 
 ?>
@@ -40,6 +41,7 @@ require '../database/config.php';
 
 
 <?php
+
 include '../includes/header.php';
 ?>
 

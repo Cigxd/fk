@@ -1,6 +1,6 @@
 <?php
-include 'client/functions/contact.php';
 require 'database/config.php';
+include 'client/functions/contact.php';
 
 
 ?>

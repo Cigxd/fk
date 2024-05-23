@@ -1,4 +1,5 @@
 <?php
+$page = 'home';
 include '../../database/config.php';
 
 // Enable detailed error reporting for mysqli
@@ -97,7 +98,7 @@ try {
 </head>
 <body class="index-page">
 
-<?php include '../../includes/header.php'; ?>
+<!--<?php// include '../../includes/header.php'; ?>-->
 
 <section class="vh-120 gradient-custom">
   <div class="container py-5 h-100">
@@ -177,7 +178,7 @@ try {
               <input type="hidden" name="created_date" value="<?php echo $created_date; ?>">
               <div class="mt-4 pt-2">
                 <button type="submit" name="submit" class="btn btn-danger btn-lg">Register</button>
-                <a href="login.php" class="btn btn-secondary btn-lg">Login</a>
+                <a href="login.php" class="btn btn-secondary btn-lg">Go back to Login</a>
               </div>
             </form>
           </div>
