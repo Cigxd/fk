@@ -58,7 +58,7 @@ $products = list_products_by_time($conn);
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h1 class="sub-category-title mt-4 bg-danger p-2 rounded text-light">Latest Products</h1>
+                <h1 class="text-justify mt-4 bg-dark p-2 rounded text-light">LATEST PRODUCTS</h1>
             </div>
         </div>
         <?php

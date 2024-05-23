@@ -11,7 +11,7 @@
 
 
 function list_products_by_time($conn) {
-    $sql = "SELECT * FROM `product` ORDER BY `created_date` DESC LIMIT 4";
+    $sql = "SELECT * FROM `product` ORDER BY `created_date` DESC LIMIT 8";
     $result = $conn->query($sql);
     return $result;
 }
