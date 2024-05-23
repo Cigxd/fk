@@ -1,4 +1,5 @@
 <?php
+$product_id = $_POST['product_id'];
 function add_to_cart($conn,$product_id){
     $client_id = $_SESSION['client_id'];
     $query = "INSERT INTO `cart` (client_id, product_id,created_date)

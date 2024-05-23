@@ -93,9 +93,7 @@ if ($products->num_rows > 0) {
                           <p class="card-text text-light">' . $description . '</p>
                           <div class="d-flex flex-column mt-4">
                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#productModal' . $product_id . '">Details</button>
-                             <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-secondary btn-sm mt-2" type="button">
-                                Add to Cart
-                             </button>
+                             <button class="btn btn-outline-secondary btn-sm mt-2 add-to-cart-btn" data-product-id="' . $product_id . '">Add to Cart</button>
                           </div>
                        </div>
                     </div>
@@ -343,6 +341,7 @@ if ($products->num_rows > 0) {
 
 <!-- Vendor JS Files -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    <!-- Vendor JS Files -->
    <script src="../bootstrap/Day/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
