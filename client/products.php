@@ -170,12 +170,12 @@ function get_cat_name($conn, $sub_category_id){
                                     <p><strong>Rock Type: </strong>' . $rock_type .'<span id="modalRockType"></span></p>
                                     <p><strong>Price: </strong>' . $price .'<span id="modalPrice"></span></p>
                                     <p><strong>Quantity: </strong>' . $quantity .'<span id="modalQuantity"></span></p>
-                                    <p><strong>Created Date: </strong>' . $created_date .'<span id="modalCreatedDate"></span></p>
+                                    <p><strong>Published at: </strong>' . $created_date .'<span id="modalCreatedDate"></span></p>
                                     <p><strong>Description: </strong>' . $description .'</p>
                                     <p id="modalDescription"></p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><strong>QR Code: </strong> <br><br> <span claa="p-4" id="modalQRCode"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS03N6U8egHJfFlWXoL0G3snsgyQyBjAnIKsEV8UCjxag&s" width="100px"></span></p>
+                                    <p><strong>QR Code: </strong> <br><br> <span claa="p-4" id="modalQRCode"><img src="'.$qr_code.'" width="100px"></span></p>
                                 </div>
                                 </div>
 
