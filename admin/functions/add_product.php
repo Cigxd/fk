@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         VALUES($sub_category,'{$_POST['name']}', '{$_POST['period']}','{$_POST['price']}','{$_POST['quantity']}','{$image_dir}','{$fileName}','{$_POST['description']}' , NOW())";
         // Process fossil data
     } elseif ($category == "mineral") {
-        $mineralEnvironment = $_POST["mineralEnvironment"];
+        $mineralEnvironment = $_POST["env"];
         $fossilPeriod = NULL;
         $rockType = NULL;
         $sub_category = $_POST['Sub_select_mineral'];

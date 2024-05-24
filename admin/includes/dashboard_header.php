@@ -10,7 +10,7 @@
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand" style="color: while; text-decoration:none;" href="../index.php">
+          <a class="sidebar-brand" style="color: while; text-decoration:none;" href="dashboard.php">
             <h1>Brilliance</h1>
         </a>
           <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="../bootstrap/dash/assets/images/logo-mini.svg" alt="logo" /></a>

@@ -38,6 +38,18 @@ $products = list_products_by_time($conn);
 
   <!-- Main CSS File -->
   <link href="../bootstrap/Day/assets/css/main.css" rel="stylesheet">
+  <style>
+   .shit{
+      background: rgba(255, 255, 255, 0.17);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(6.2px);
+      -webkit-backdrop-filter: blur(6.2px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+   }
+   
+
+  </style>
 
 </head>
 <body class="index-page">
@@ -49,16 +61,66 @@ $products = list_products_by_time($conn);
 
 
 
-<main class="main">
+<main class="main bg-black">
    <!-- Hero Section -->
+  
+   <section class="hero-section mt-5 bg-black">
+   <div class="container py-5">
+        <div class="row mb-4 align-items-center flex-lg-row-reverse">
+            <div class="col-md-6 col-xl-7 mb-4 mb-lg-0 " >
+                <!-- requires glightbox, please flag the option in the picostrap customizer panel-->
+
+
+                <div class="lc-block position-relative"><img class="img-fluid rounded shadow" src="https://images.unsplash.com/photo-1621947081720-86970823b77a?ixlib=rb-1.2.1&amp" srcset="https://c4.wallpaperflare.com/wallpaper/733/496/988/procedural-minerals-mineral-colorful-abstract-wallpaper-preview.jpg" sizes="(max-width: 3840px) 100vw, 3840px" width="3840" height="" alt="Photo by Richard Horvath">
+                    <a class="position-absolute top-50 start-50 translate-middle glightbox d-flex justify-content-center align-items-center" href="https://www.youtube.com/watch?v=BKgpLOUYZJ4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" fill="currentColor" class="text-white" viewBox="0 0 16 16" lc-helper="svg-icon">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div><!-- /col -->
+            <div class="col-md-6 col-xl-5">
+                <div class="lc-block mb-3">
+                    <div editable="rich">
+                        <h1 class="fw-bolder display-2 text-light">Discover Brilliance</h1>
+                    </div>
+                </div><!-- /lc-block -->
+                <!-- /lc-block -->
+
+
+               <div class="lc-block mb-4">
+                    <div editable="rich">
+
+                        <p class="lead text-light">
+                        Welcome to Brilliance where the earth's marvels meet human ingenuity. Delve into our exquisite assortment of precious rocks, each a testament to the magnificence of geological artistry. From the fiery brilliance of rubies to the serene allure of sapphires, our collection transcends time, offering a glimpse into the depths of nature's wonder.
+                        </p>
+
+                    </div>
+               </div>
+               <div class="lc-block">
+                  <a class="btn btn-lg text-light btn-hover" style="background-color: none; border: 1px solid white;" href="#latest" role="button">Explore Our Collection</a>
+               </div><!-- /lc-block -->
+            </div><!-- /col -->
+        </div>
+    </div>
+
+
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js" onload="const lightbox = GLightbox({});"></script>
+    <!-- lazily load the gLightbox CSS file -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+   </section>
 
    <!-- /Hero Section -->
    <!-- Hero Section -->
-<section class="hero-section mt-5">
+<section class="hero-section mt-5 bg-black">
     <div class="container">
-        <div class="row">
+        <div class="row" id="latest">
             <div class="col-12 text-center mb-5">
-                <h1 class="text-justify mt-4 bg-dark p-2 rounded text-light">LATEST PRODUCTS</h1>
+                <h1 class="text-justify mt-4 text-light">LATEST PRODUCTS</h1>
             </div>
         </div>
         <?php
@@ -77,23 +139,44 @@ if ($products->num_rows > 0) {
         $image = $row['image'];
         $qr_code = $row['qr_code'];
         $description = $row['description'];
+
+        if (strlen($description) > 60){
+            $str = substr($description, 0, 59) . '...';
+         }else{
+            $str = $description;
+         }
+         
                        
         if (strpos($image, '../../') === 0) {
           $image = str_replace('../../', '../', $image);
         }
         $qr_code = str_replace('005', '../uploads/products/005', $qr_code);
 
+        if($quantity>0){
+         $qte = "Available in Stock";
+         $cls = "success";
+        }else{
+         $qte = "Not Available in Stock";
+         $cls = "danger";
+        }
 
 
+        (strlen($str) < 31)?$add = '<br>':$add = '';
         echo '<div class="col">
-                 <div class="card h-100 p-2 rounded bg-dark">
+                 <div class="card h-100 p-2 rounded bg-black">
                     <img src="' . $image . '" class="card-img-top" alt="Product Image" style="max-height: 200px;">
                     <div class="card-body">
                           <h5 class="card-title text-light">' . $name . '</h5>
-                          <p class="card-text text-light">' . $description . '</p>
+                          <h6 class="text-'.$cls.'">'.$qte.'</h6>
+                          <p class="card-text text-light">' .$add  . $str . '</p>
                           <div class="d-flex flex-column mt-4">
-                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#productModal' . $product_id . '">Details</button>
-                             <button class="btn btn-outline-secondary btn-sm mt-2 add-to-cart-btn" data-product-id="' . $product_id . '">Add to Cart</button>
+                             <button type="button" class="btn text-light" style="background-color: #cc1616;" data-toggle="modal" data-target="#productModal' . $product_id . '">Details</button>
+                             <button class="btn btn-outline-secondary btn-sm mt-2 add-to-cart-btn" data-product-id="' . $product_id . '">
+                                 Add to cart
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                 </svg>
+                             </button>
                           </div>
                        </div>
                     </div>
@@ -109,7 +192,7 @@ if ($products->num_rows > 0) {
                          <span aria-hidden="true">&times;</span>
                          </button>
                      </div>
-                     <div class="modal-body">
+                     <div class="modal-body shit">
                          <div class="row">
                          <div class="col-md-6">
                              <img src="' . $image .'" class="img-fluid" alt="Product Image">
@@ -131,7 +214,7 @@ if ($products->num_rows > 0) {
                      </div>
                      <div class="modal-footer">
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         <button type="button" class="btn btn-danger">Add to Cart</button>
+                         <button type="button" class="btn text-light" style="background-color: #cc1616;">Add to Cart</button>
                      </div>
                      </div>
                  </div>
@@ -147,7 +230,7 @@ if ($products->num_rows > 0) {
     </div>
 </section>
    <!-- About Section -->
-   <section id="about" class="about section">
+   <section id="about" class="about section bg-black">
       <!-- Section Title -->
       <div class="container section-title" >
          <span class="">About Us<br></span>
@@ -177,7 +260,7 @@ if ($products->num_rows > 0) {
    </section>
    <!-- /About Section -->
    <!-- Clients Section -->
-   <section id="clients" class="clients section">
+   <section id="clients" class="clients section bg-black">
       <!-- Section Title -->
       <div class="container section-title" >
          <span class="">Our Partners & Clients</span>
@@ -237,24 +320,8 @@ if ($products->num_rows > 0) {
    </div>
    </div>
    </section><!-- /Services Section -->
-   <!-- Call To Action Section -->
-   <section id="call-to-action" class="call-to-action section" style="background-color: black;">
-      <img src="#" alt="">
-      <div class="container">
-         <div class="row justify-content-center">
-            <div class="col-xl-10">
-               <div class="text-center">
-                  <h3>Call To Action</h3>
-                  <p>If you have any question about our brand, feel free to contact our support!</p>
-                  <a class="cta-btn" href="#contact">Contact Us</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-   <!-- /Call To Action Section -->
    <!-- Contact Section -->
-   <section id="contact" class="contact section">
+   <section id="contact" class="contact section bg-black">
       <!-- Section Title -->
       <div class="container section-title" >
          <span class="">Contact</span>

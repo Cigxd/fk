@@ -85,7 +85,7 @@ $product = $conn->query($products_sql);
                                     echo '<td><img src="' . $image . '" alt="Product Image"></td>';
                                     // echo '<td><img src="' . $row['qr_code'] . '" alt="Product Image"></td>';
                                     echo '<td>
-                                          <a href="functions/view.php?id=' . $row['product_id'] . '&page=' . "product" . '" class="btn btn-secondary">View</a>
+                                          <a href="functions/view.php?id=' . $row['product_id'] . '&page=' . "product" . '" class="btn btn-secondary">Edit</a>
                                           <a href="functions/delete.php?id=' . $row['product_id'] . '&page=' . "product" . '" class="btn btn-danger">Delete</a>
                                         </td>';
                                    echo '</tr>';

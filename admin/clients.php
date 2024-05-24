@@ -79,7 +79,6 @@ $client = $conn->query($client_sql);
                                     //echo '<td><img src="' . $row2['image'] . '" alt="Product Image"></td>';
                                     // echo '<td><img src="' . $row['qr_code'] . '" alt="Product Image"></td>';
                                     echo '<td>
-                                          <a href="functions/view.php?id=' . $row['client_id'] . '&page=' . "client" . '" class="btn btn-secondary">View</a>
                                           <a href="functions/delete.php?id=' . $row['client_id'] . '&page=' . "client" . '" class="btn btn-danger">Delete</a>
                                         </td>';
 
