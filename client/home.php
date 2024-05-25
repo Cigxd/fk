@@ -229,22 +229,24 @@ if ($products->num_rows > 0) {
 
     </div>
 </section>
+
+
    <!-- About Section -->
    <section id="about" class="about section bg-black">
       <!-- Section Title -->
       <div class="container section-title" >
          <span class="">About Us<br></span>
-         <h2 class="">About Us<br></h2>
-         <p>We take pride in being more than just a marketplace for rare and exquisite treasures. We are curators of stories, custodians of history, and purveyors of beauty. Our mission is to unlock the mysteries of the Earth and share its wonders with the world.</p>
+         <h2 class="text-light">About Us<br></h2>
+         <p class="text-light">We take pride in being more than just a marketplace for rare and exquisite treasures. We are curators of stories, custodians of history, and purveyors of beauty. Our mission is to unlock the mysteries of the Earth and share its wonders with the world.</p>
       </div>
       <!-- End Section Title -->
-      <div class="container">
+      <div class="container text-light">
          <div class="row gy-4">
             <div class="col-lg-6 order-1 order-lg-2"  data-aos-delay="100">
                <img src="../resources/jossuha-theophile-ZhVKeFCb6NE-unsplash.jpg" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 order-2 order-lg-1 content"  data-aos-delay="200">
-               <h3>Embark on a voyage of exploration with Brilliance as your guide.</h3>
+               <h3 class="text-light">Embark on a voyage of exploration with Brilliance as your guide.</h3>
                <p class="fst-italic">
                   Our user-friendly online platform makes it easy to browse, shop, and discover new treasures from the comfort of your own home. Whether you're seeking a rare addition to your collection or the perfect gift for a loved one, our dedicated team is here to assist you every step of the way.
                </p>
@@ -264,7 +266,7 @@ if ($products->num_rows > 0) {
       <!-- Section Title -->
       <div class="container section-title" >
          <span class="">Our Partners & Clients</span>
-         <h2>Our Partners & Clients</h2>
+         <h2 class="text-light">Our Partners & Clients</h2>
          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div>
       <!-- End Section Title -->
@@ -325,33 +327,33 @@ if ($products->num_rows > 0) {
       <!-- Section Title -->
       <div class="container section-title" >
          <span class="">Contact</span>
-         <h2 class="">Contact</h2>
-         <p>Check our conbtact info</p>
+         <h2 class="text-light">Contact</h2>
+         <p class="text-light">Check our conbtact info</p>
       </div>
       <!-- End Section Title -->
       <div class="container"  data-aos-delay="100">
          <div class="row gy-4">
             <div class="col-lg-6">
-               <div class="info-item d-flex flex-column justify-content-center align-items-center"  data-aos-delay="200">
+               <div class="info-item d-flex flex-column justify-content-center align-items-center text-light"  data-aos-delay="200">
                   <i class="bi bi-geo-alt"></i>
-                  <h3>Address</h3>
-                  <p>Taounate 34000</p>
+                  <h3 class="text-light">Address</h3>
+                  <p class="text-light">Taounate 34000</p>
                </div>
             </div>
             <!-- End Info Item -->
             <div class="col-lg-3 col-md-6">
                <div class="info-item d-flex flex-column justify-content-center align-items-center"  data-aos-delay="300">
                   <i class="bi bi-telephone"></i>
-                  <h3>Call Us</h3>
-                  <p>+212 5 77 83 08 36</p>
+                  <h3 class="text-light">Call Us</h3>
+                  <p class="text-light">+212 5 77 83 08 36</p>
                </div>
             </div>
             <!-- End Info Item -->
             <div class="col-lg-3 col-md-6">
                <div class="info-item d-flex flex-column justify-content-center align-items-center"  data-aos-delay="400">
                   <i class="bi bi-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>brilliancemuseum@gmail.com</p>
+                  <h3 class="text-light">Email Us</h3>
+                  <p class="text-light">brilliancemuseum@gmail.com</p>
                </div>
             </div>
             <!-- End Info Item -->
@@ -364,22 +366,22 @@ if ($products->num_rows > 0) {
             <div class="col-lg-6">
                <form action="home.php" method="POST">
                   <div class="form-group">
-                        <label for="name">Name</label>
+                        <label class="text-light" for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                   </div>
                   <div class="form-group">
-                        <label for="email">Email</label>
+                        <label class="text-light" for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                   </div>
                   <div class="form-group">
-                        <label for="subject">Subject</label>
+                        <label class="text-light" for="subject">Subject</label>
                         <input type="text" class="form-control" id="subject" name="subject" required>
                   </div>
                   <div class="form-group">
-                        <label for="message">Message</label>
+                        <label class="text-light" for="message">Message</label>
                         <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                   </div>
-                  <button type="submit" name="submit" class="btn btn-danger mt-4">Submit</button>
+                  <button type="submit" name="submit" class="btn btn-danger mt-4" >Send</button>
                </form>
             </div>
 

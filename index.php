@@ -76,10 +76,8 @@ include 'client/functions/contact.php';
             </nav>
         </div>
     </div>
+
 </header>
-
-
-
 
 <main class="main">
    <!-- Hero Section -->
@@ -96,6 +94,7 @@ include 'client/functions/contact.php';
       </div>
    </section>
    <!-- /Hero Section -->
+   
    <!-- About Section -->
    <section id="about" class="about section">
       <!-- Section Title -->
@@ -187,6 +186,13 @@ include 'client/functions/contact.php';
    </div>
    </div>
    </section><!-- /Services Section -->
+
+
+
+<!--this is for end of the video-->
+
+
+
    <!-- Call To Action Section -->
    <section id="call-to-action" class="call-to-action section" style="background-color: black;">
       <img src="#" alt="">
