@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           // User is a client
           $_SESSION['user_type'] = 'client';
           $row = mysqli_fetch_assoc($client_sql);
-          $_SESSION['id'] = $row['client_id']; // Assuming client_id is the primary key
+          $_SESSION['id'] = $row['client_id'];
           header("Location: client/home.php?id='" . $row['client_id'] . "'");
           exit();
         }

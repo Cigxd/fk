@@ -2,8 +2,8 @@
 $page = 'home';
 // Start the session if not already started
 
-include '../../database/config.php'; // Include your database connection
-require '../path/to/checkUserSession.php'; // Include session checking function
+include '../../database/config.php';
+require '../path/to/checkUserSession.php';
 $msg = '';
 
 try {
@@ -11,7 +11,7 @@ try {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Prepare SQL statement to check email
+       
         $check_email_sql = "SELECT * FROM client WHERE email = ?";
         $check_email_stmt = $conn->prepare($check_email_sql);
         $check_email_stmt->bind_param('s', $email);
@@ -19,13 +19,13 @@ try {
         $email_result = $check_email_stmt->get_result();
 
         if ($email_result->num_rows == 1) {
-            // Email exists, fetch the user record
+           
             $user = $email_result->fetch_assoc();
             $hashed_password = $user['password'];
 
-            // Verify password
+           
             if (password_verify($password, $hashed_password)) {
-                // Password correct, set session and redirect
+               
                 $_SESSION['client_id'] = $user['client_id'];
                 header("Location: ../home.php");
                 exit();
