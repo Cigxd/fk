@@ -262,66 +262,7 @@ if ($products->num_rows > 0) {
    </section>
    <!-- /About Section -->
    <!-- Clients Section -->
-   <section id="clients" class="clients section bg-black">
-      <!-- Section Title -->
-      <div class="container section-title" >
-         <span class="">Our Partners & Clients</span>
-         <h2 class="text-light">Our Partners & Clients</h2>
-         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div>
-      <!-- End Section Title -->
-      <div class="container">
-         <div class="swiper">
-            <script type="application/json" class="swiper-config">
-               {
-                 "loop": true,
-                 "speed": 600,
-                 "autoplay": {
-                   "delay": 1000
-                 },
-                 "slidesPerView": "auto",
-                 "pagination": {
-                   "el": ".swiper-pagination",
-                   "type": "bullets",
-                   "clickable": true
-                 },
-                 "breakpoints": {
-                   "320": {
-                     "slidesPerView": 2,
-                     "spaceBetween": 40
-                   },
-                   "480": {
-                     "slidesPerView": 3,
-                     "spaceBetween": 60
-                   },
-                   "640": {
-                     "slidesPerView": 4,
-                     "spaceBetween": 80
-                   },
-                   "992": {
-                     "slidesPerView": 6,
-                     "spaceBetween": 120
-                   }
-                 }
-               }
-            </script>
-            <div class="swiper-wrapper align-items-center">
-               <div class="swiper-slide"><img src="../resources/58428e7da6515b1e0ad75ab5.png" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/cma-cgm-logo.svg" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/maersk-group-logo.svg" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/Mastercard-logo.svg.png" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/paypal-3.svg" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/visa-checkout-1.svg" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/ocean-network-express-logo.svg" class="img-fluid" alt=""></div>
-               <div class="swiper-slide"><img src="../resources/dhl-1.svg" class="img-fluid" alt=""></div>
-            </div>
-         </div>
-      </div>
-   </section>
-
-   </div>
-   </div>
-   </section><!-- /Services Section -->
+   <!-- /Services Section -->
    <!-- Contact Section -->
    <section id="contact" class="contact section bg-black">
       <!-- Section Title -->
